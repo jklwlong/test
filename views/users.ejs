@@ -1,0 +1,55 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>express</title>
+	<style>
+		li {
+			list-style-type:none;
+		}
+		a {
+			color: #4c4c4c;
+			text-decoration: none;
+		}
+		.fl{
+			float: left;
+		}
+		.imgsize{
+			width: 142px;
+			height: 190px;
+		}
+		.ml{
+			margin-left: 80px;
+		}
+		.mt{
+			margin-top: 30px;
+		}
+		.mtm{
+			margin-top: 10px;
+		}
+		.al{
+			width: 142px;
+			text-align:left;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			overflow: hidden;
+		}
+	</style>
+	<script type="text/javascript" src="javascripts/jquery1.8.0.min.js"></script>
+</head>
+<body>
+	<a href="/">spider</a>
+	<ul>
+		<% books.forEach(function(book){%>
+		<li class="fl ml mt">
+			<div><img class="imgsize" src = "<%=book.src %>"></div>
+			<div class="al mtm"><a href="javascript:void(0);"><%=book.name %></a></div>
+		</li>
+		<% }) %>
+	</ul>
+
+</div>
+</body>
+<script type="text/javascript">
+
+</script>
+</html>
