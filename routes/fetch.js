@@ -5,6 +5,7 @@ router.post('/', function(req, res, next) {
 	// var param = req.body;
  //     res.json({"errorCode": 0,"errorMessage": 'save'});
  	fetch.fetch();
+	res.json({"errorCode": 0,"errorMessage": 'save'});
 });
 
 module.exports = router;
