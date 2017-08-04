@@ -13,7 +13,7 @@ var htmlArray = [];
 var urls =[];
 function fetch (){
     superagent
-    .get(baseUrl) 
+    .get(baseUrl)
     .end(function(req,res){
         var $ = cheerio.load(res.text);
         $('.detail-list li').each(function(){
@@ -55,7 +55,7 @@ function getHtml(url, callback){
                 console.log(htmlArray.length);
                 callback(null,"success!");
                 resolve(html);
-                
+
             });
 
         }).on('error', function (e) {
@@ -96,9 +96,11 @@ function savedImg(name, src) {
             console.log(err);
         }
     });
-    request(src).pipe(fs.createWriteStream('public/images/' + name + '.jpg'));
-
-    var data = {name: name,src: 'images/' + name + '.jpg',publishTime:new Date()}
+    //此处为将img存在本地
+    // request(src).pipe(fs.createWriteStream('public/images/' + name + '.jpg'));
+    // var data = {name: name,src: 'images/' + name + '.jpg',publishTime:new Date()}
+    //此处为直接存储url至mongodb，图片不做存储
+    var data = {name: name,src: src,publishTime:new Date()}
     book.create(data,function(err,foo){
         if(err){
             console.log(err)

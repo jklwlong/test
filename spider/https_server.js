@@ -15,15 +15,15 @@ var options = {
 // 	var pathName = url.parse(req.url).pathname;
 // 	console.log(pathName);
 // 	res.writeHead(200);
-// 	fs.readFile('./html/login.html','utf-8',function(err,data){  
-//         if(err){  
-//             console.error(err);  
-//         }  
-//         else{  
+// 	fs.readFile('./html/login.html','utf-8',function(err,data){
+//         if(err){
+//             console.error(err);
+//         }
+//         else{
 //             res.end(data);
-//         }  
+//         }
 //     });
-	
+
 // }).listen(8888);
 
 

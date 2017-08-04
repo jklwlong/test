@@ -7,13 +7,14 @@ router.get('/', function(req, res, next) {
 	// var params = urllib.parse(req.url, true);
 	//  var query = params.query;
 	// var result = mongo.query();
-	
+
 	book.find({}, function (err, books) {
 		if(err) {
 			return res.send(err);
 		}
 		console.log(books)
-		res.render('users',{books: books});
+		// res.render('users',{books: books});
+		res.json({"books": books});
 	});
 });
 

@@ -21,6 +21,16 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+//允许跨域访问配置
+app.all('*', function(req, res, next) {
+   res.header("Access-Control-Allow-Origin", "*");
+   res.header("Access-Control-Allow-Headers", "Content-Type,Content-Length, Authorization, Accept,X-Requested-With");
+   res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
+   res.header("X-Powered-By",' 3.2.1');
+   res.header("Content-Type", "application/json;charset=utf-8");
+   next();
+});
+
 app.use('/', require('./routes/index'));
 app.use('/users', require('./routes/users'));
 app.use('/fetch', require('./routes/fetch'));
