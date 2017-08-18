@@ -18,4 +18,44 @@ router.get('/', function(req, res, next) {
 	});
 });
 
+router.post('/findById', function(req, res, next) {
+	var params = req.body.id;
+	book.findById(params, function (err, book) {
+		if(err) {
+			return res.send(err);
+		}
+		res.json({"book": book});
+	});
+});
+
+router.post('/updateById', function(req, res, next) {
+	var params = req.body;
+	book.update({_id:params.id}, params, function (err) {
+		if(err) {
+			return res.send(err);
+		}
+		res.json({"success": "success"});
+	});
+});
+
+router.post('/delById', function(req, res, next) {
+	var params = req.body;
+	book.remove({_id:params.id}, err => {
+		if(err) {
+			return res.send(err);
+		}
+		res.json({"success": "success"});
+	});
+});
+
+router.post('/batchDel', function(req, res, next) {
+	var params = req.body;
+	book.remove({ _id: { $in: params.idArr } }, err => {
+		if(err) {
+			return res.send(err);
+		}
+		res.json({"success": "success"});
+	});
+});
+
 module.exports = router;
