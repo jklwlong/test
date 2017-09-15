@@ -2,12 +2,13 @@ var superagent = require('superagent');
 var async = require('async');
 var fs = require('fs');
 var http = require('http');
+var https = require('https')
 var cheerio = require('cheerio');
 var request = require('request');
 var Promise = require('bluebird');
 var book = require('../modules/book_module');
 var file = "public/data/test.txt";
-var baseUrl = "http://xs.sogou.com";
+var baseUrl = "https://xs.sogou.com";
 var booksUrl = [];
 var htmlArray = [];
 var urls =[];
@@ -42,7 +43,7 @@ function getPageAsync(urls) {
 function getHtml(url, callback){
     console.log('正在进行。。。' + url);
     return new Promise((resolve,reject) =>{
-        http.get(url, function (res) {
+        https.get(url, function (res) {
             var html = '';
             //防止中文乱码
             res.setEncoding('utf-8');
@@ -76,7 +77,7 @@ function filterChapters(html) {
     var text = title + '\r\n' + '\r\n' + zj + '\r\n';
     // saveContent(text);
 
-    var src = "http:" + $('#bookCover img').attr('src');
+    var src = "https:" + $('#bookCover img').attr('src');
     savedImg(title, src);
 }
 

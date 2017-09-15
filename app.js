@@ -6,8 +6,10 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var session = require('express-session');
 
 var app = express();
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -18,7 +20,7 @@ app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 //允许跨域访问配置
@@ -31,9 +33,28 @@ app.all('*', function(req, res, next) {
    next();
 });
 
+app.use(cookieParser());
+// app.use(session({
+//     secret: 'hubwiz app',
+//     cookie: {maxAge: 60 * 1000 * 30}
+// }));
+
+// app.get('/*', function (req, res) {
+//     if (req.session.sign) {//检查用户是否已经登录
+//         console.log(req.session);//打印session的值
+//         res.send(req.session.name);
+//     } else {//否则展示index页面
+//         console.log(req.session);
+//         req.session.sign = true;
+//         req.session.name = "ohayou";
+//         res.json({"flag": "nologin"});
+//     }
+// });
+
 app.use('/', require('./routes/index'));
 app.use('/users', require('./routes/users'));
 app.use('/fetch', require('./routes/fetch'));
+app.use('/user', require('./routes/user'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
